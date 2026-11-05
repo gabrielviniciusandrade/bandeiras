@@ -1,0 +1,120 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    const tela = document.querySelector('canvas');
+    const pincel = tela.getContext('2d');
+
+    // Faixa verde (lado esquerdo - 2/5 da largura)
+    pincel.fillStyle = '#006600';
+    pincel.fillRect(0, 0, 240, 400);
+
+    // Faixa vermelha (lado direito - 3/5 da largura)
+    pincel.fillStyle = '#FF0000';
+    pincel.fillRect(240, 0, 360, 400);
+
+    // ===== Esfera Armilar (centro) =====
+    const centroX = 240;
+    const centroY = 200;
+    const raioEsfera = 85;
+
+    // Círculo dourado da esfera armilar
+    pincel.strokeStyle = '#FFD700';
+    pincel.lineWidth = 8;
+    pincel.beginPath();
+    pincel.arc(centroX, centroY, raioEsfera, 0, 2 * Math.PI);
+    pincel.stroke();
+
+    // Linhas da esfera armilar (paralelos e meridianos)
+    pincel.lineWidth = 3;
+    
+    // Meridiano vertical
+    pincel.beginPath();
+    pincel.ellipse(centroX, centroY, 20, raioEsfera, 0, 0, 2 * Math.PI);
+    pincel.stroke();
+
+    // Meridiano inclinado
+    pincel.beginPath();
+    pincel.ellipse(centroX, centroY, 55, raioEsfera, Math.PI / 6, 0, 2 * Math.PI);
+    pincel.stroke();
+
+    // Paralelo horizontal
+    pincel.beginPath();
+    pincel.ellipse(centroX, centroY, raioEsfera, 25, 0, 0, 2 * Math.PI);
+    pincel.stroke();
+
+    // ===== Escudo Português (dentro da esfera) =====
+    // Fundo branco do escudo
+    pincel.fillStyle = '#FFFFFF';
+    pincel.beginPath();
+    pincel.moveTo(centroX - 45, centroY - 55);
+    pincel.lineTo(centroX + 45, centroY - 55);
+    pincel.lineTo(centroX + 45, centroY + 25);
+    pincel.quadraticCurveTo(centroX + 45, centroY + 55, centroX, centroY + 65);
+    pincel.quadraticCurveTo(centroX - 45, centroY + 55, centroX - 45, centroY + 25);
+    pincel.closePath();
+    pincel.fill();
+    pincel.strokeStyle = '#000000';
+    pincel.lineWidth = 1.5;
+    pincel.stroke();
+
+    // Borda vermelha do escudo
+    pincel.strokeStyle = '#FF0000';
+    pincel.lineWidth = 10;
+    pincel.beginPath();
+    pincel.moveTo(centroX - 45, centroY - 55);
+    pincel.lineTo(centroX + 45, centroY - 55);
+    pincel.lineTo(centroX + 45, centroY + 25);
+    pincel.quadraticCurveTo(centroX + 45, centroY + 55, centroX, centroY + 65);
+    pincel.quadraticCurveTo(centroX - 45, centroY + 55, centroX - 45, centroY + 25);
+    pincel.closePath();
+    pincel.stroke();
+
+    // Castelos amarelos na borda (simplificados)
+    pincel.fillStyle = '#FFD700';
+    const castelos = [
+        [-35, -50], [0, -50], [35, -50],
+        [-40, -10], [40, -10],
+        [-30, 30], [30, 30]
+    ];
+    castelos.forEach(([dx, dy]) => {
+        pincel.fillRect(centroX + dx - 6, centroY + dy - 4, 12, 10);
+        pincel.fillRect(centroX + dx - 3, centroY + dy - 8, 6, 5);
+    });
+
+    // ===== As 5 Quinas (escudos azuis) =====
+    pincel.fillStyle = '#003399';
+    
+    // Quina central
+    desenharQuina(centroX, centroY - 5);
+    
+    // Quinas dos cantos
+    desenharQuina(centroX - 22, centroY - 25);
+    desenharQuina(centroX + 22, centroY - 25);
+    desenharQuina(centroX - 22, centroY + 15);
+    desenharQuina(centroX + 22, centroY + 15);
+
+    function desenharQuina(x, y) {
+        // Escudo azul
+        pincel.fillStyle = '#003399';
+        pincel.beginPath();
+        pincel.moveTo(x - 10, y - 12);
+        pincel.lineTo(x + 10, y - 12);
+        pincel.lineTo(x + 10, y + 4);
+        pincel.quadraticCurveTo(x + 10, y + 12, x, y + 14);
+        pincel.quadraticCurveTo(x - 10, y + 12, x - 10, y + 4);
+        pincel.closePath();
+        pincel.fill();
+
+        // 5 pontos brancos (bezantes) em cruz
+        pincel.fillStyle = '#FFFFFF';
+        const pontos = [
+            [0, -6], [-5, 0], [0, 0], [5, 0], [0, 6]
+        ];
+        pontos.forEach(([dx, dy]) => {
+            pincel.beginPath();
+            pincel.arc(x + dx, y + dy, 2.2, 0, 2 * Math.PI);
+            pincel.fill();
+        });
+    }
+
+</script>

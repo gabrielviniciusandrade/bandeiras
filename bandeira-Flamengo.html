@@ -1,0 +1,42 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Altura de cada faixa (8 faixas vermelhas e pretas)
+    var alturaFaixa = 400 / 8;
+
+    // Desenha as faixas horizontais (vermelho e preto alternados)
+    for (var i = 0; i < 8; i++) {
+        if (i % 2 === 0) {
+            pincel.fillStyle = 'red';
+        } else {
+            pincel.fillStyle = 'black';
+        }
+        pincel.fillRect(0, i * alturaFaixa, 600, alturaFaixa);
+    }
+
+    // Losango branco no centro
+    pincel.fillStyle = 'white';
+    pincel.beginPath();
+    pincel.moveTo(300, 100);   // topo
+    pincel.lineTo(200, 200);   // esquerda
+    pincel.lineTo(300, 300);   // baixo
+    pincel.lineTo(400, 200);   // direita
+    pincel.closePath();
+    pincel.fill();
+
+    // Borda preta do losango
+    pincel.strokeStyle = 'black';
+    pincel.lineWidth = 8;
+    pincel.stroke();
+
+    // Letras CRF no centro
+    pincel.fillStyle = 'black';
+    pincel.font = 'bold 48px Arial';
+    pincel.textAlign = 'center';
+    pincel.textBaseline = 'middle';
+    pincel.fillText('CRF', 300, 200);
+
+</script>

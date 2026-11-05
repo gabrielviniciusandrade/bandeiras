@@ -1,0 +1,115 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    const tela = document.querySelector('canvas');
+    const pincel = tela.getContext('2d');
+
+    // Faixa superior - Branca
+    pincel.fillStyle = '#FFFFFF';
+    pincel.fillRect(0, 0, 600, 200);
+
+    // Faixa inferior - Verde
+    pincel.fillStyle = '#00A651';
+    pincel.fillRect(0, 200, 600, 200);
+
+    // ===== Dragão Vermelho (versão estilizada) =====
+    pincel.fillStyle = '#D21034';
+    pincel.strokeStyle = '#8B0000';
+    pincel.lineWidth = 2;
+
+    // Corpo principal do dragão
+    pincel.beginPath();
+    pincel.moveTo(180, 220);          // perna traseira
+    pincel.quadraticCurveTo(160, 180, 200, 160); // lombo
+    pincel.quadraticCurveTo(280, 140, 340, 160); // costas
+    pincel.quadraticCurveTo(380, 180, 360, 220); // traseira
+    pincel.quadraticCurveTo(320, 250, 280, 240); // barriga
+    pincel.quadraticCurveTo(220, 250, 180, 220);
+    pincel.fill();
+    pincel.stroke();
+
+    // Pescoço e cabeça
+    pincel.beginPath();
+    pincel.moveTo(200, 160);
+    pincel.quadraticCurveTo(180, 120, 160, 100); // pescoço
+    pincel.quadraticCurveTo(140, 80, 130, 90);   // cabeça
+    pincel.quadraticCurveTo(110, 100, 120, 120); // mandíbula
+    pincel.quadraticCurveTo(150, 130, 180, 140);
+    pincel.fill();
+    pincel.stroke();
+
+    // Boca / língua
+    pincel.beginPath();
+    pincel.moveTo(120, 110);
+    pincel.lineTo(95, 105);
+    pincel.lineTo(100, 115);
+    pincel.closePath();
+    pincel.fill();
+
+    // Olho
+    pincel.fillStyle = '#FFFFFF';
+    pincel.beginPath();
+    pincel.arc(140, 95, 6, 0, 2 * Math.PI);
+    pincel.fill();
+    pincel.fillStyle = '#000000';
+    pincel.beginPath();
+    pincel.arc(141, 95, 3, 0, 2 * Math.PI);
+    pincel.fill();
+
+    // Asa
+    pincel.fillStyle = '#D21034';
+    pincel.beginPath();
+    pincel.moveTo(240, 150);
+    pincel.quadraticCurveTo(280, 80, 340, 70);   // ponta da asa
+    pincel.quadraticCurveTo(320, 120, 300, 150); // parte de baixo
+    pincel.quadraticCurveTo(270, 160, 240, 150);
+    pincel.fill();
+    pincel.stroke();
+
+    // Detalhes da asa (membranas)
+    pincel.beginPath();
+    pincel.moveTo(250, 145);
+    pincel.lineTo(290, 95);
+    pincel.moveTo(265, 148);
+    pincel.lineTo(310, 100);
+    pincel.moveTo(280, 150);
+    pincel.lineTo(325, 110);
+    pincel.stroke();
+
+    // Perna dianteira levantada
+    pincel.beginPath();
+    pincel.moveTo(210, 180);
+    pincel.quadraticCurveTo(190, 200, 170, 210);
+    pincel.lineTo(175, 220);
+    pincel.quadraticCurveTo(200, 210, 220, 195);
+    pincel.fill();
+    pincel.stroke();
+
+    // Garras da pata dianteira
+    pincel.beginPath();
+    pincel.moveTo(170, 210);
+    pincel.lineTo(155, 205);
+    pincel.moveTo(170, 215);
+    pincel.lineTo(155, 220);
+    pincel.moveTo(175, 220);
+    pincel.lineTo(165, 230);
+    pincel.stroke();
+
+    // Cauda
+    pincel.beginPath();
+    pincel.moveTo(360, 200);
+    pincel.quadraticCurveTo(420, 180, 450, 220);
+    pincel.quadraticCurveTo(470, 250, 440, 270);
+    pincel.quadraticCurveTo(400, 260, 380, 230);
+    pincel.fill();
+    pincel.stroke();
+
+    // Pontas da cauda
+    pincel.beginPath();
+    pincel.moveTo(440, 270);
+    pincel.lineTo(455, 290);
+    pincel.lineTo(430, 280);
+    pincel.closePath();
+    pincel.fill();
+
+</script>

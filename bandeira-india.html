@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    const tela = document.querySelector('canvas');
+    const pincel = tela.getContext('2d');
+
+    // Faixa superior - Saffron (laranja)
+    pincel.fillStyle = '#FF9933';
+    pincel.fillRect(0, 0, 600, 133.33);
+
+    // Faixa do meio - Branca
+    pincel.fillStyle = '#FFFFFF';
+    pincel.fillRect(0, 133.33, 600, 133.33);
+
+    // Faixa inferior - Verde
+    pincel.fillStyle = '#138808';
+    pincel.fillRect(0, 266.66, 600, 133.34);
+
+    // ===== Ashoka Chakra (roda azul no centro) =====
+    const centroX = 300;
+    const centroY = 200;
+    const raio = 55;
+
+    // Círculo externo
+    pincel.strokeStyle = '#000080';
+    pincel.lineWidth = 3;
+    pincel.beginPath();
+    pincel.arc(centroX, centroY, raio, 0, 2 * Math.PI);
+    pincel.stroke();
+
+    // Círculo interno pequeno
+    pincel.beginPath();
+    pincel.arc(centroX, centroY, 8, 0, 2 * Math.PI);
+    pincel.fillStyle = '#000080';
+    pincel.fill();
+
+    // 24 raios (spokes) da Ashoka Chakra
+    pincel.strokeStyle = '#000080';
+    pincel.lineWidth = 2.5;
+
+    for (let i = 0; i < 24; i++) {
+        const angulo = (i * 15) * Math.PI / 180; // 360° / 24 = 15°
+        
+        // Ponto interno (próximo do centro)
+        const x1 = centroX + Math.cos(angulo) * 12;
+        const y1 = centroY + Math.sin(angulo) * 12;
+        
+        // Ponto externo (na borda do círculo)
+        const x2 = centroX + Math.cos(angulo) * raio;
+        const y2 = centroY + Math.sin(angulo) * raio;
+
+        pincel.beginPath();
+        pincel.moveTo(x1, y1);
+        pincel.lineTo(x2, y2);
+        pincel.stroke();
+    }
+
+</script>

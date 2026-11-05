@@ -1,0 +1,61 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    const tela = document.querySelector('canvas');
+    const pincel = tela.getContext('2d');
+
+    // Fundo verde (cor oficial aproximada)
+    pincel.fillStyle = '#006C35';
+    pincel.fillRect(0, 0, 600, 400);
+
+    // ===== Shahada (texto árabe em branco) =====
+    pincel.fillStyle = 'white';
+    pincel.font = 'bold 42px "Traditional Arabic", "Arial", "Segoe UI", sans-serif';
+    pincel.textAlign = 'center';
+    pincel.textBaseline = 'middle';
+    
+    // Texto da Shahada
+    pincel.fillText('لَا إِلٰهَ إِلَّا ٱلله', 300, 140);
+    pincel.fillText('مُحَمَّدٌ رَسُولُ ٱلله', 300, 195);
+
+    // ===== Espada branca (abaixo do texto) =====/ Texto da Shahada
+    pincel.fillText('لَا إِلٰهَ إِلَّا ٱلله', 300, 140);
+    pincel.fillText('مُحَمَّدٌ رَسُولُ ٱلله', 300, 195);
+    pincel.lineCap = 'round';
+
+    // Lâmina da espada (horizontal, ponta para a esquerda)
+    pincel.beginPath();
+    pincel.moveTo(160, 280);          // ponta
+    pincel.lineTo(440, 280);          // cabo
+    pincel.lineTo(440, 290);
+    pincel.lineTo(160, 290);
+    pincel.closePath();
+    pincel.fill();
+
+    // Guarda (parte superior do cabo)
+    pincel.beginPath();
+    pincel.moveTo(430, 265);
+    pincel.lineTo(460, 265);
+    pincel.lineTo(460, 305);
+    pincel.lineTo(430, 305);
+    pincel.closePath();
+    pincel.fill();
+
+    // Cabo (empunhadura)
+    pincel.beginPath();
+    pincel.moveTo(460, 275);
+    pincel.lineTo(500, 275);
+    pincel.lineTo(500, 295);
+    pincel.lineTo(460, 295);
+    pincel.closePath();
+    pincel.fill();
+
+    // Detalhe da ponta (afiada)
+    pincel.beginPath();
+    pincel.moveTo(160, 280);
+    pincel.lineTo(145, 285);
+    pincel.lineTo(160, 290);
+    pincel.closePath();
+    pincel.fill();
+
+</script>

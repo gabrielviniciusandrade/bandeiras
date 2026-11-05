@@ -1,0 +1,19 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Faixa verde (esquerda)
+    pincel.fillStyle = 'green';
+    pincel.fillRect(0, 0, 200, 400);
+
+    // Faixa branca (centro)
+    pincel.fillStyle = 'white';
+    pincel.fillRect(200, 0, 200, 400);
+
+    // Faixa vermelha (direita)
+    pincel.fillStyle = 'red';
+    pincel.fillRect(400, 0, 200, 400);
+
+</script>
