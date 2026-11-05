@@ -1,0 +1,73 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Altura de cada faixa (13 faixas)
+    var alturaFaixa = 400 / 13;
+
+    // Desenha as 13 faixas horizontais (começa e termina com vermelho)
+    for (var i = 0; i < 13; i++) {
+        if (i % 2 === 0) {
+            pincel.fillStyle = 'red';
+        } else {
+            pincel.fillStyle = 'white';
+        }
+        pincel.fillRect(0, i * alturaFaixa, 600, alturaFaixa);
+    }
+
+    // Cantão azul (union) - cobre as 7 primeiras faixas
+    var alturaCantao = alturaFaixa * 7;
+    var larguraCantao = 240; // aproximadamente 2/5 da largura
+    pincel.fillStyle = 'navy';
+    pincel.fillRect(0, 0, larguraCantao, alturaCantao);
+
+    // Função para desenhar uma estrela de 5 pontas
+    function desenharEstrela(x, y, tamanho) {
+        pincel.beginPath();
+        for (var i = 0; i < 5; i++) {
+            // Ponta da estrela
+            var angulo = (i * 4 * Math.PI / 5) - Math.PI / 2;
+            var px = x + Math.cos(angulo) * tamanho;
+            var py = y + Math.sin(angulo) * tamanho;
+            if (i === 0) {
+                pincel.moveTo(px, py);
+            } else {
+                pincel.lineTo(px, py);
+            }
+            // Parte interna
+            angulo += (2 * Math.PI / 5);
+            px = x + Math.cos(angulo) * (tamanho / 2.5);
+            py = y + Math.sin(angulo) * (tamanho / 2.5);
+            pincel.lineTo(px, py);
+        }
+        pincel.closePath();
+        pincel.fill();
+    }
+
+    // Desenha as 50 estrelas (9 fileiras: 6 e 5 alternadas)
+    pincel.fillStyle = 'white';
+    var tamanhoEstrela = 8;
+    var espacoX = larguraCantao / 12;
+    var espacoY = alturaCantao / 10;
+
+    // Fileiras com 6 estrelas (fileiras 1, 3, 5, 7, 9)
+    for (var linha = 0; linha < 5; linha++) {
+        for (var col = 0; col < 6; col++) {
+            var x = espacoX + col * (espacoX * 1.8);
+            var y = espacoY + linha * (espacoY * 1.8);
+            desenharEstrela(x, y, tamanhoEstrela);
+        }
+    }
+
+    // Fileiras com 5 estrelas (fileiras 2, 4, 6, 8)
+    for (var linha = 0; linha < 4; linha++) {
+        for (var col = 0; col < 5; col++) {
+            var x = espacoX * 1.9 + col * (espacoX * 1.8);
+            var y = espacoY * 1.9 + linha * (espacoY * 1.8);
+            desenharEstrela(x, y, tamanhoEstrela);
+        }
+    }
+
+</script>

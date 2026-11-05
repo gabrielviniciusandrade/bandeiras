@@ -1,0 +1,54 @@
+<canvas width="600" height="300"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Faixas vermelhas laterais (cada uma com 1/4 da largura)
+    pincel.fillStyle = 'red';
+    pincel.fillRect(0, 0, 150, 300);      // faixa esquerda
+    pincel.fillRect(450, 0, 150, 300);    // faixa direita
+
+    // Quadrado branco central
+    pincel.fillStyle = 'white';
+    pincel.fillRect(150, 0, 300, 300);
+
+    // Folha de bordo (maple leaf) simplificada
+    pincel.fillStyle = 'red';
+    pincel.beginPath();
+
+    // Centro da folha
+    var cx = 300;
+    var cy = 150;
+
+    // Desenho simplificado da folha de bordo (11 pontas aproximadas)
+    pincel.moveTo(cx, cy - 90);          // ponta de cima
+
+    // Lado direito
+    pincel.lineTo(cx + 25, cy - 55);
+    pincel.lineTo(cx + 55, cy - 70);
+    pincel.lineTo(cx + 40, cy - 30);
+    pincel.lineTo(cx + 80, cy - 25);
+    pincel.lineTo(cx + 50, cy + 5);
+    pincel.lineTo(cx + 70, cy + 40);
+    pincel.lineTo(cx + 25, cy + 30);
+    pincel.lineTo(cx + 30, cy + 70);
+    pincel.lineTo(cx, cy + 50);          // base do caule
+
+    // Lado esquerdo (espelhado)
+    pincel.lineTo(cx - 30, cy + 70);
+    pincel.lineTo(cx - 25, cy + 30);
+    pincel.lineTo(cx - 70, cy + 40);
+    pincel.lineTo(cx - 50, cy + 5);
+    pincel.lineTo(cx - 80, cy - 25);
+    pincel.lineTo(cx - 40, cy - 30);
+    pincel.lineTo(cx - 55, cy - 70);
+    pincel.lineTo(cx - 25, cy - 55);
+
+    pincel.closePath();
+    pincel.fill();
+
+    // Caule da folha
+    pincel.fillRect(cx - 6, cy + 45, 12, 40);
+
+</script>

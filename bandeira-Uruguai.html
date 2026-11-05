@@ -1,0 +1,72 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Altura de cada faixa (9 faixas)
+    var alturaFaixa = 400 / 9;
+
+    // Desenha as 9 faixas horizontais (começa e termina com branco)
+    for (var i = 0; i < 9; i++) {
+        if (i % 2 === 0) {
+            pincel.fillStyle = 'white';
+        } else {
+            pincel.fillStyle = 'blue';
+        }
+        pincel.fillRect(0, i * alturaFaixa, 600, alturaFaixa);
+    }
+
+    // Cantão branco (quadrado no canto superior esquerdo)
+    // Cobre as 5 primeiras faixas
+    var tamanhoCantao = alturaFaixa * 5;
+    pincel.fillStyle = 'white';
+    pincel.fillRect(0, 0, tamanhoCantao, tamanhoCantao);
+
+    // Sol de Maio (círculo amarelo)
+    var centroX = tamanhoCantao / 2;
+    var centroY = tamanhoCantao / 2;
+    var raioSol = 45;
+
+    pincel.fillStyle = 'gold';
+    pincel.beginPath();
+    pincel.arc(centroX, centroY, raioSol, 0, 2 * Math.PI);
+    pincel.fill();
+
+    // Raios do sol (16 raios alternados)
+    pincel.fillStyle = 'gold';
+    for (var i = 0; i < 16; i++) {
+        var angulo = (i * 22.5) * Math.PI / 180; // 360° / 16 = 22.5°
+        var x1 = centroX + Math.cos(angulo) * (raioSol + 5);
+        var y1 = centroY + Math.sin(angulo) * (raioSol + 5);
+        var x2 = centroX + Math.cos(angulo) * (raioSol + 28);
+        var y2 = centroY + Math.sin(angulo) * (raioSol + 28);
+
+        pincel.beginPath();
+        pincel.moveTo(centroX, centroY);
+        pincel.lineTo(x1, y1);
+        pincel.lineTo(x2, y2);
+        pincel.closePath();
+        pincel.fill();
+    }
+
+    // Rosto simples do Sol de Maio
+    pincel.fillStyle = '#8B4513'; // marrom para os olhos e boca
+
+    // Olhos
+    pincel.beginPath();
+    pincel.arc(centroX - 15, centroY - 8, 5, 0, 2 * Math.PI);
+    pincel.fill();
+
+    pincel.beginPath();
+    pincel.arc(centroX + 15, centroY - 8, 5, 0, 2 * Math.PI);
+    pincel.fill();
+
+    // Boca (sorriso)
+    pincel.beginPath();
+    pincel.arc(centroX, centroY + 8, 12, 0.2 * Math.PI, 0.8 * Math.PI);
+    pincel.strokeStyle = '#8B4513';
+    pincel.lineWidth = 3;
+    pincel.stroke();
+
+</script>

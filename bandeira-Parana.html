@@ -1,0 +1,103 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    // Fundo verde
+    pincel.fillStyle = 'green';
+    pincel.fillRect(0, 0, 600, 400);
+
+    // Faixa branca diagonal (do canto superior esquerdo para o inferior direito)
+    pincel.strokeStyle = 'white';
+    pincel.lineWidth = 110;
+    pincel.beginPath();
+    pincel.moveTo(0, 80);
+    pincel.lineTo(600, 320);
+    pincel.stroke();
+
+    // Círculo azul (esfera celeste)
+    pincel.fillStyle = 'blue';
+    pincel.beginPath();
+    pincel.arc(300, 200, 85, 0, 2 * Math.PI);
+    pincel.fill();
+
+    // Faixa branca horizontal dentro do círculo
+    pincel.fillStyle = 'white';
+    pincel.fillRect(220, 185, 160, 28);
+
+    // Texto "PARANÁ"
+    pincel.fillStyle = 'green';
+    pincel.font = 'bold 18px Arial';
+    pincel.textAlign = 'center';
+    pincel.fillText('PARANÁ', 300, 205);
+
+    // Função para desenhar estrela de 5 pontas
+    function estrela(x, y, tamanho) {
+        pincel.beginPath();
+        for (var i = 0; i < 5; i++) {
+            var angulo = (i * 4 * Math.PI / 5) - Math.PI / 2;
+            var px = x + Math.cos(angulo) * tamanho;
+            var py = y + Math.sin(angulo) * tamanho;
+            if (i === 0) pincel.moveTo(px, py);
+            else pincel.lineTo(px, py);
+
+            angulo += 2 * Math.PI / 5;
+            px = x + Math.cos(angulo) * (tamanho / 2.3);
+            py = y + Math.sin(angulo) * (tamanho / 2.3);
+            pincel.lineTo(px, py);
+        }
+        pincel.closePath();
+        pincel.fill();
+    }
+
+    // Estrelas do Cruzeiro do Sul (brancas)
+    pincel.fillStyle = 'white';
+
+    // Estrela maior em cima da faixa
+    estrela(300, 155, 12);
+
+    // Quatro estrelas embaixo da faixa
+    estrela(255, 240, 8);
+    estrela(290, 255, 9);
+    estrela(330, 250, 8);
+    estrela(300, 280, 7);
+
+    // Ramos simplificados (erva-mate à esquerda e araucária à direita)
+    pincel.strokeStyle = 'green';
+    pincel.lineWidth = 3;
+
+    // Ramo esquerdo (erva-mate - simplificado)
+    pincel.beginPath();
+    pincel.moveTo(210, 280);
+    pincel.quadraticCurveTo(180, 220, 200, 160);
+    pincel.stroke();
+
+    // Folhas do ramo esquerdo
+    pincel.beginPath();
+    pincel.arc(195, 180, 8, 0, Math.PI * 2);
+    pincel.arc(185, 200, 7, 0, Math.PI * 2);
+    pincel.arc(195, 220, 8, 0, Math.PI * 2);
+    pincel.arc(180, 240, 6, 0, Math.PI * 2);
+    pincel.fillStyle = 'green';
+    pincel.fill();
+
+    // Ramo direito (araucária - simplificado)
+    pincel.beginPath();
+    pincel.moveTo(390, 280);
+    pincel.quadraticCurveTo(420, 220, 400, 160);
+    pincel.stroke();
+
+    // Folhas do ramo direito
+    pincel.beginPath();
+    pincel.moveTo(400, 170);
+    pincel.lineTo(415, 155);
+    pincel.lineTo(405, 180);
+    pincel.lineTo(420, 175);
+    pincel.lineTo(410, 195);
+    pincel.lineTo(425, 200);
+    pincel.lineTo(405, 210);
+    pincel.closePath();
+    pincel.fill();
+
+</script>
